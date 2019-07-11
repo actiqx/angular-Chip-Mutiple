@@ -1,7 +1,7 @@
 
 <mat-chip-list multiple [selectable]="true"  >
 
-    <mat-chip *ngFor="let item of activePageDataChunk" [selected]="item.state" (click)="item.state=!item.state;changeSelected('s', item.field)">{{item.field}} </mat-chip>
+    <mat-chip *ngFor="let item of activePageDataChunk" [selected]="item.state" (click)="changeSelected(item)">{{item.field}} </mat-chip>
  
 </mat-chip-list>
 

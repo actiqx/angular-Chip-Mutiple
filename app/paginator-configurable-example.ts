@@ -42,26 +42,29 @@ selectedChips=[];
     let secondCut = firstCut + e.pageSize;
     this.activePageDataChunk = this.datasource.slice(firstCut, secondCut);
   }
-  changeSelected(parameter: string, query: string) {
+  changeSelected( query) {
 
 let index = this.selectedChips.indexOf(query);
 if (index >= 0) {
     this.selectedChips.splice(index, 1);
 } else {
+  query.state=!query.state;
     this.selectedChips.push(query);
 }
-console.log("this. selectedChips " + this.selectedChips  );
+console.log("this. selectedChips " + JSON.stringify(this.selectedChips)  );
 
 }
 selectAllRecord(){
   this.datasource.map(chip=>{
     return chip.state=true;
   })
+  this.selectedChips.push(this.datasource)
 }
 clearAllRecord(){
   this.datasource.map(chip=>{
     return chip.state=false;
   })
+  this.selectedChips=[];
 }
 }
 
