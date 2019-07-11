@@ -48,7 +48,7 @@ let index = this.selectedChips.indexOf(query);
 if (index >= 0) {
     this.selectedChips.splice(index, 1);
 } else {
-  query.state=!query.state;
+  
     this.selectedChips.push(query);
 }
 console.log("this. selectedChips " + JSON.stringify(this.selectedChips)  );
