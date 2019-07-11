@@ -1,0 +1,10 @@
+
+<mat-chip-list multiple [selectable]="true"  >
+
+    <mat-chip *ngFor="let item of activePageDataChunk" [selected]="item.state" (click)="item.state=!item.state;changeSelected('s', item.field)">{{item.field}} </mat-chip>
+ 
+</mat-chip-list>
+
+
+<mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
+</mat-paginator>
