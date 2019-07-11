@@ -53,6 +53,16 @@ if (index >= 0) {
 console.log("this. selectedChips " + this.selectedChips  );
 
 }
+selectAllRecord(){
+  this.datasource.map(chip=>{
+    return chip.state=true;
+  })
+}
+clearAllRecord(){
+  this.datasource.map(chip=>{
+    return chip.state=false;
+  })
+}
 }
 
 

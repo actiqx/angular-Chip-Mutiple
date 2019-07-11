@@ -5,6 +5,8 @@
  
 </mat-chip-list>
 
-
+  <button mat-button (click)="selectAllRecord()">Select All</button>
+  <button mat-button (click)="clearAllRecord()">Clear All</button>
 <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
+
 </mat-paginator>
