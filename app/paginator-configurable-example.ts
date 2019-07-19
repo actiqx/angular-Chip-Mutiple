@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component,OnInit,HostListener,Input} from '@angular/core';
 import {PageEvent} from '@angular/material';
 
 /**
@@ -10,13 +10,17 @@ import {PageEvent} from '@angular/material';
   styleUrls: ['paginator-configurable-example.css'],
 })
 
-export class PaginatorConfigurableExample {
+export class PaginatorConfigurableExample implements OnInit{
 
   // MatPaginator Inputs
-  length = 1000;
-  pageSize = 10;
+  length = 100;
+  pageSize = 0;
+  chipWidth=173;
+  @Input() row=2;
+  paginatorArray=[];
   pageSizeOptions: number[] = [5, 10, 25, 100];
 selectedChips=[];
+windowWidth:any;
   // MatPaginator Output
   pageEvent: PageEvent;
 
@@ -26,13 +30,30 @@ selectedChips=[];
 
   constructor() {
     // Generaing dummy content
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < this.length; i++) {
       let dummyObject = { field: `abc${i+1}`,state:false} 
       this.datasource.push(dummyObject);
     }
-    this.activePageDataChunk = this.datasource.slice(0,this.pageSize);
+   
   }
-
+  ngOnInit(){
+    this.windowWidth= window.innerWidth;
+    this.getPagination();
+    
+  }
+@HostListener('window:resize', ['$event'])
+onResize(event) {
+  this.windowWidth = window.innerWidth;
+  this.getPagination();
+}
+  getPagination(){
+    this.pageSize=Math.floor((this.windowWidth/this.chipWidth) * this.row);
+    let pagination=this.length/this.pageSize;
+    // for(var i=1;i<pagination;i++){
+    //   this.paginatorArray.push(i);
+    // }
+     this.activePageDataChunk = this.datasource.slice(0,this.pageSize);
+  }
   setPageSizeOptions(setPageSizeOptionsInput: string) {
     this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
