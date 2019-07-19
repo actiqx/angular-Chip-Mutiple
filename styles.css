@@ -6,8 +6,11 @@ body {
 }
 
 .basic-container {
-    padding: 50px;
-    margin-left: 50px;
+    padding: 5%;
+    margin-left: 5%;
+}
+mat-chip{
+  width:100%
 }
 
 .version-info {

@@ -15,7 +15,7 @@ export class PaginatorConfigurableExample implements OnInit{
   // MatPaginator Inputs
   length = 100;
   pageSize = 0;
-  chipWidth=173;
+  chipWidth=168;
   @Input() row=2;
   paginatorArray=[];
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -37,17 +37,19 @@ windowWidth:any;
    
   }
   ngOnInit(){
-    this.windowWidth= window.innerWidth;
+    this.windowWidth= window.innerWidth-50;
     this.getPagination();
     
   }
 @HostListener('window:resize', ['$event'])
 onResize(event) {
-  this.windowWidth = window.innerWidth;
+  this.windowWidth = window.innerWidth-50;
+  console.log(this.windowWidth);
   this.getPagination();
 }
   getPagination(){
-    this.pageSize=Math.floor((this.windowWidth/this.chipWidth) * this.row);
+    this.pageSize=Math.floor(Math.floor(this.windowWidth/this.chipWidth) * this.row);
+  
     let pagination=this.length/this.pageSize;
     this.paginatorArray=[];
     for(var i=1;i<pagination;i++){
