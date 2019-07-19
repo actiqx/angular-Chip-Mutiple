@@ -49,9 +49,10 @@ onResize(event) {
   getPagination(){
     this.pageSize=Math.floor((this.windowWidth/this.chipWidth) * this.row);
     let pagination=this.length/this.pageSize;
-    // for(var i=1;i<pagination;i++){
-    //   this.paginatorArray.push(i);
-    // }
+    this.paginatorArray=[];
+    for(var i=1;i<pagination;i++){
+      this.paginatorArray.push(i);
+    }
      this.activePageDataChunk = this.datasource.slice(0,this.pageSize);
   }
   setPageSizeOptions(setPageSizeOptionsInput: string) {

@@ -9,7 +9,7 @@
   <button mat-button (click)="clearAllRecord()">Clear All</button>
 
   <button mat-button (click)="paginator.previousPage()"><<</button>
- <button mat-button *ngFor="let pages of paginatorArray">{{page}}</button>
+ <button mat-button *ngFor="let pages of paginatorArray">{{pages}}</button>
   <button mat-button (click)="paginator.nextPage()">>></button>
 <mat-paginator style="display:none" [length]="length" [pageSize]="pageSize" #paginator [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)">
 
