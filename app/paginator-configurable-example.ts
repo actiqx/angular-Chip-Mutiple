@@ -1,5 +1,5 @@
-import {Component,OnInit,HostListener,Input} from '@angular/core';
-import {PageEvent} from '@angular/material';
+import {Component,OnInit,HostListener,Input,ViewChild} from '@angular/core';
+import {PageEvent,MatPaginator} from '@angular/material';
 
 /**
  * @title Configurable paginator
@@ -20,7 +20,9 @@ export class PaginatorConfigurableExample implements OnInit{
   paginatorArray=[];
   pageSizeOptions: number[] = [5, 10, 25, 100];
 selectedChips=[];
+currentPageIndex:any;
 windowWidth:any;
+@ViewChild('paginator') paginator: MatPaginator; 
   // MatPaginator Output
   pageEvent: PageEvent;
 
@@ -39,6 +41,7 @@ windowWidth:any;
   ngOnInit(){
     this.windowWidth= window.innerWidth-50;
     this.getPagination();
+    this.currentPageIndex=1;
     
   }
 @HostListener('window:resize', ['$event'])
@@ -66,6 +69,33 @@ onResize(event) {
     let secondCut = firstCut + e.pageSize;
     this.activePageDataChunk = this.datasource.slice(firstCut, secondCut);
   }
+  
+setCurrent(num) {
+// const firstCut = (num - 1) * this.paginator.pageSize;//0*3/
+// const secondCut = firstCut + this.paginator.pageSize;//0+3
+const firstCut = (num - 1) * this.pageSize;
+const secondCut = firstCut + this.pageSize;
+this.activePageDataChunk = this.datasource.slice(firstCut, secondCut);
+this.currentPageIndex = num;
+}
+ 
+  setPreviousPage(event) {
+    event.preventDefault();
+    if (this.currentPageIndex>=1) {
+    this.currentPageIndex--;
+    this.paginator.previousPage();
+    }
+}
+
+  setNextPage(event) {
+    event.preventDefault();
+
+
+    if (this.currentPageIndex<=this.paginatorArray.length) {
+    this.currentPageIndex++;
+    this.paginator.previousPage();
+    }
+}
   changeSelected( query) {
 
 let index = this.selectedChips.indexOf(query);

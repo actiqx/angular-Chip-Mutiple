@@ -2,3 +2,6 @@
 mat-chip{
   width:150px;
 }
+.mat-button.active{
+  background:rebeccapurple;
+}
