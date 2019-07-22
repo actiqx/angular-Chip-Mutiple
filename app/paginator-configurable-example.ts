@@ -81,7 +81,7 @@ this.currentPageIndex = num;
  
   setPreviousPage(event) {
     event.preventDefault();
-    if (this.currentPageIndex>=1) {
+    if (this.currentPageIndex>1) {
     this.currentPageIndex--;
     this.paginator.previousPage();
     }
@@ -90,8 +90,8 @@ this.currentPageIndex = num;
   setNextPage(event) {
     event.preventDefault();
 
-
-    if (this.currentPageIndex<=this.paginatorArray.length) {
+      debugger;
+    if (this.currentPageIndex<this.paginatorArray.length) {
     this.currentPageIndex++;
     this.paginator.previousPage();
     }
