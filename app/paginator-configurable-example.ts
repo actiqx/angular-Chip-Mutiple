@@ -93,7 +93,7 @@ this.currentPageIndex = num;
       debugger;
     if (this.currentPageIndex<this.paginatorArray.length) {
     this.currentPageIndex++;
-    this.paginator.previousPage();
+    this.paginator.nextPage();
     }
 }
   changeSelected( query) {
